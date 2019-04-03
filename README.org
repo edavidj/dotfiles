@@ -13,7 +13,7 @@ turned on (auto-completion, spellcheck, syntax check, etc.). Outside of this I'v
 personally prefer having on like line numbers and slanted style for the modeline.
 ** User Config
 *** Org-mode
-I've included some org-mode configuration here mostly. One thing I really like is having syntax highlighting 
+Most of my config is for org-mode so far. One thing I really like is having syntax highlighting 
 in the pdf output from org files. You can achieve this with the following snippet I got from a TA of mine.
 #+begin_src elisp
 (setq org-latex-listings 'minted
@@ -25,13 +25,13 @@ in the pdf output from org files. You can achieve this with the following snippe
 )
 #+end_src
 If for some reason you are looking to use this .spacemacs setup, be aware
-that minted has dependencies and will most likely crash your latex export if you don't have them. You'll want
+that minted has dependencies and the above will most likely crash your latex export if you don't have them. You'll want
 to make sure you've got python and the pygments package installed (see [[http://pygments.org/download/][installation]]). If that doesn't work
 the issue is with your latex packages not with emacs itself (as I've learned the hard way).
 
-Outside of this there some added support for haskell code blocks I've included, and snippets for haskell and C
+Outside of this there is some added support for haskell code blocks I've included, and snippets for haskell and C
 source blocks.
 *** Keybindings
-+ ~SPC e '~ opens the eshell in your current buffer.
++ ~SPC e \'~ opens the eshell in your current buffer.
 + ~SPC y r~ will reload your snippets.
 + ~SPC y n~ will open a new snippet.
