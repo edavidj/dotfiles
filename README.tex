@@ -1,0 +1,75 @@
+% Created 2019-04-02 Tue 21:34
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{minted}
+\author{Ethan Johnston}
+\date{\today}
+\title{Configuration Files}
+\hypersetup{
+ pdfauthor={Ethan Johnston},
+ pdftitle={Configuration Files},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 25.2.2 (Org mode 9.2.2)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+
+
+\section{About}
+\label{sec:orgcd02a43}
+\begin{itemize}
+\item This repository is mostly just for the purposes of hosting my spacemacs config.
+\item Just in case I'll document any of the additional keybindings or functionality that I've added.
+\end{itemize}
+\section{Spacemacs}
+\label{sec:org0341940}
+\subsection{Defaults}
+\label{sec:org6f0210c}
+My configuration is pretty bare bones right now. I've enabled a lot of the useful layers that aren't automatically
+turned on (auto-completion, spellcheck, syntax check, etc.). Outside of this I've enabled some QOL features that I
+personally prefer having on like line numbers and slanted style for the modeline.
+\subsection{User Config}
+\label{sec:org02dace0}
+\subsubsection{Org-mode}
+\label{sec:org273c2a3}
+I've included some org-mode configuration here mostly. One thing I really like is having syntax highlighting 
+in the pdf output from org files. You can achieve this with the following snippet I got from a TA of mine.
+\begin{minted}[]{elisp}
+(setq org-latex-listings 'minted
+          org-latex-packages-alist '(("" "minted"))
+          org-latex-pdf-process
+          '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+            "biber %b"
+            "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f")
+)
+\end{minted}
+If for some reason you are looking to use this .spacemacs setup, be aware
+that minted has dependencies and will most likely crash you pdf export if you don't have them. You'll want
+to make sure you've got python and the pygments package installed (see \href{http://pygments.org/download/}{installation}). If that doesn't work
+the issue is with your latex packages not with emacs itself (as I've learned the hard way).
+
+Outside of this there some added support for haskell code blocks I've included, and snippets for haskell and C
+source blocks.
+\subsubsection{Keybindings}
+\label{sec:org70e4cf7}
+\begin{itemize}
+\item \texttt{SPC e '} opens the eshell in your current buffer.
+\item \texttt{SPC y r} will reload your snippets.
+\item \texttt{SPC y n} will open a new snippet.
+\end{itemize}
+\end{document}
