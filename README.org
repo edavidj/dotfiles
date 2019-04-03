@@ -32,6 +32,6 @@ the issue is with your latex packages not with emacs itself (as I've learned the
 Outside of this there is some added support for haskell code blocks I've included, and snippets for haskell and C
 source blocks.
 *** Keybindings
-+ ~SPC e \'~ opens the eshell in your current buffer.
-+ ~SPC y r~ will reload your snippets.
-+ ~SPC y n~ will open a new snippet.
++ ~(SPC e ')~ opens the eshell in your current buffer.
++ ~(SPC y r)~ will reload your snippets.
++ ~(SPC y n)~ will open a new snippet.
