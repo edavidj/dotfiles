@@ -329,6 +329,7 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   ;; activate rjsx mode on js files.
   (add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
+  (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
   ;; language config
   (setq-default js-indent-level 2)
   (setq-default js2-basic-offset 2)
@@ -350,7 +351,7 @@ you should place your code here."
     (org-babel-do-load-languages 'org-babel-load-languages '((haskell . t)))
     (add-to-list 'org-structure-template-alist
                  '("hs" . "src haskell")
-                 '("c" . "src C"))
+                 '("sc" . "src C"))
 
     (setq org-latex-listings 'minted
           org-latex-packages-alist '(("" "minted"))
