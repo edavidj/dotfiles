@@ -343,6 +343,12 @@ you should place your code here."
   (spacemacs/set-leader-keys "yr" 'yas-reload-all)
   (spacemacs/set-leader-keys "yn" 'yas-new-snippet)
   ;; editor config
+  ;; line wrapping in org mode! I like to keep everything on screen
+  (defun org-line-wrap ()
+    (spacemacs/toggle-visual-line-navigation-on)
+    (setq-local word-wrap t))
+
+  (add-hook 'org-mode-hook 'org-line-wrap)
   ;; org mode config (do not add org stuff outside of here)
   (with-eval-after-load 'org
     ;; here goes your Org config
