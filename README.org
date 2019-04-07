@@ -29,8 +29,13 @@ that minted has dependencies and the above will most likely crash your latex exp
 to make sure you've got python and the pygments package installed (see [[http://pygments.org/download/][installation]]). If that doesn't work
 the issue is with your latex packages not with emacs itself (as I've learned the hard way).
 
-Outside of this there is some added support for haskell code blocks I've included, and snippets for haskell and C
-source blocks.
+I do a lot of writing in org mode, so I've got it set up to linewrap once it overflows on the buffer instead of the window. This is achieved by pasting this anywhere in user-config.
+#+begin_src elisp
+;; line wrapping in org mode! I like to keep everything on screen
+(defun org-line-wrap ()
+  (spacemacs/toggle-visual-line-navigation-on)
+  (setq-local word-wrap t))
+#+end_src
 *** React and Vue
 My configuration includes and uses rjsx-mode for all js files, if you want it to narrow the scope of when it activates
 then change the following line to be a more precise pattern. I've also added vue-mode which I've found is a little lacking
