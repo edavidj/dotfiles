@@ -7,10 +7,19 @@
 + This repository is mostly just for the purposes of hosting my spacemacs config.
 + Just in case I'll document any of the additional keybindings or functionality that I've added.
 * Spacemacs
+** Set up
+I've had a better time of things using the develop branch, so I set things up using the following. 
+   #+begin_src shell
+rm -rf ~/.emacs.d
+git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d   
+cd ~
+git checkout develop
+git pull origin develop 
+   #+end_src
 ** Defaults
-My configuration is pretty bare bones right now. I've enabled a lot of the useful layers that aren't automatically
+I've enabled a lot of the useful layers that aren't automatically
 turned on (auto-completion, spellcheck, syntax check, etc.). Outside of this I've enabled some QOL features that I
-personally prefer having on like line numbers and slanted style for the modeline.
+personally prefer having on like line numbers in code files and slanted style for the modeline.
 ** User Config
 *** Org-mode
 Most of my config is for org-mode so far. One thing I really like is having syntax highlighting 
@@ -31,10 +40,7 @@ the issue is with your latex packages not with emacs itself (as I've learned the
 
 I do a lot of writing in org mode, so I've got it set up to linewrap once it overflows on the buffer instead of the window. This is achieved by pasting this anywhere in user-config.
 #+begin_src elisp
-;; line wrapping in org mode! I like to keep everything on screen
-(defun org-line-wrap ()
-  (spacemacs/toggle-visual-line-navigation-on)
-  (setq-local word-wrap t))
+(add-hook 'org-mode-hook 'visual-line-mode)
 #+end_src
 *** React and Vue
 My configuration includes and uses rjsx-mode for all js files, if you want it to narrow the scope of when it activates
@@ -45,8 +51,20 @@ so I turn web-mode for .vue files instead.
 (add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
 (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
 #+end_src
+*** Darkroom
+I do a lot of writing in emacs aside from programming itself. To make it easier to focus I have the package darkroom included in my additional packages section. I created a toggle for this via the following snippet. (it just centres the text and zooms in)
+#+begin_src elisp
+;; darkroom hotkey
+(spacemacs|add-toggle darkroom-mode
+    :status darkroom-mode
+    :on (darkroom-mode)
+    :off (darkroom-mode -1)
+    :documentation "Turn on darkroom mode"
+    :evil-leader "zd")
+#+end_src
 *** Additional Keybindings
 + ~(SPC e ')~ opens the eshell in your current buffer.
 + ~(SPC m ')~ opens the multi-term in your current buffer.
 + ~(SPC y r)~ will reload your snippets.
 + ~(SPC y n)~ will open a new snippet.
++ ~(SPC z d)~ will toggle darkroom.
