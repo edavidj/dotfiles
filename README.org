@@ -12,7 +12,7 @@ I've had a better time of things using the develop branch, so I set things up us
    #+begin_src shell
 rm -rf ~/.emacs.d
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d   
-cd ~
+cd ~/.emacs.d
 git checkout develop
 git pull origin develop 
    #+end_src
