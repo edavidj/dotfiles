@@ -8,14 +8,35 @@
 + Just in case I'll document any of the additional keybindings or functionality that I've added.
 * Spacemacs
 ** Set up
-I've had a better time of things using the develop branch, so I set things up using the following. 
+I've had a better time of things using the develop branch, to use this do the following. 
    #+begin_src shell
 rm -rf ~/.emacs.d
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d   
 cd ~/.emacs.d
 git checkout develop
-git pull origin develop 
    #+end_src
+If you're just trying to get base spacemacs setup ignore the following steps, but if you want to try this set up you can use the following before opening emacs again.
+#+begin_src shell
+git clone https://github.com/edavidj/dotfiles ~/dotfiles
+mv ~/dotfiles/.spacemacs ~/.spacemacs
+#+end_src
+Now just open emacs and spacemacs will begin setting itself up. 
+*** Windows
++ It should work the same way if you've already got emacs installed, you'll just need to replace ~ with your actual home directory because emacs generally doesn't use the same one as git bash would (at least in my experience).
++ Open emacs and click ~Open Home Directory~. This will show you what your HOME is set to.
++ Do the above in git bash, replacing ~ with ~/<HOME_PATH>, where ~ is likely your user directory.
+*** Adding Non-Layer Packages
+To add non-layer packages, include them as seen below (dotspacemacs-additional-packages is already defined by spacemacs, grep for it) and add additional configuration to the user config function. As an example here is mine.
+    #+begin_src elisp
+dotspacemacs-additional-packages '(
+                                   (darkroom :location
+                                             (recipe :fetcher github :repo "joaotavora/darkroom"))
+                                   vue-mode
+                                   doom-themes
+                                   rjsx-mode
+                                   )
+ 
+    #+end_src
 ** Defaults
 I've enabled a lot of the useful layers that aren't automatically
 turned on (auto-completion, spellcheck, syntax check, etc.). Outside of this I've enabled some QOL features that I
@@ -48,23 +69,24 @@ then change the following line to be a more precise pattern. I've also added vue
 so I turn web-mode for .vue files instead.
 #+begin_src elisp
 ;; activate frontend modes as follows
-(add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
+(add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
 (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
 #+end_src
 *** Darkroom
-I do a lot of writing in emacs aside from programming itself. To make it easier to focus I have the package darkroom included in my additional packages section. I created a toggle for this via the following snippet. (it just centres the text and zooms in)
+I do a lot of writing in emacs aside from programming itself. To make it easier to focus I have the package darkroom included in my additional packages section. I included a toggle for this via the following snippet. (it just centres the text and zooms in)
 #+begin_src elisp
 ;; darkroom hotkey
 (spacemacs|add-toggle darkroom-mode
     :status darkroom-mode
     :on (darkroom-mode)
     :off (darkroom-mode -1)
-    :documentation "Turn on darkroom mode"
+    :documentation "Toggle darkroom mode"
     :evil-leader "zd")
 #+end_src
 *** Additional Keybindings
 + ~(SPC e ')~ opens the eshell in your current buffer.
 + ~(SPC m ')~ opens the multi-term in your current buffer.
++ ~(SPC s ')~ opens the shell in your current buffer (sometimes not?)
 + ~(SPC y r)~ will reload your snippets.
 + ~(SPC y n)~ will open a new snippet.
 + ~(SPC z d)~ will toggle darkroom.

@@ -350,6 +350,7 @@ you should place your code here."
   ;; opens eshell wherever I currently am!
   (spacemacs/set-leader-keys "e'" 'eshell)
   (spacemacs/set-leader-keys "m'" 'multi-term)
+  (spacemacs/set-leader-keys "s'" 'shell)
   ;; yassnippet bindings
   (spacemacs/set-leader-keys "yr" 'yas-reload-all)
   (spacemacs/set-leader-keys "yn" 'yas-new-snippet)
@@ -367,7 +368,6 @@ you should place your code here."
     (setq-local word-wrap t))
 
   (add-hook 'org-mode-hook 'visual-line-mode)
-  (add-hook 'js2-mode-hook 'lsp)
   ;; org mode config (do not add org stuff outside of here)
   (with-eval-after-load 'org
     ;; here goes your Org config
